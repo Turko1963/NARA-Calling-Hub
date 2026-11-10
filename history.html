@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NARA Calling Hub — History</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050608}
+a{color:#9AA2B3;text-decoration:none}a:hover{color:#F2F4F8}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #C8FF5A;outline-offset:3px}
+.dock a{position:relative}
+.dock .tip{position:absolute;left:58px;top:50%;transform:translateY(-50%);white-space:nowrap;background:#F2F4F8;color:#050608;font-size:12px;padding:5px 9px;border-radius:7px;opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.dock a:hover .tip,.dock a:focus-visible .tip{opacity:1}
+.hrow{transition:background .2s}
+.hrow:hover{background:rgba(255,255,255,.035)!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:720px){.dock{position:static!important;height:auto!important;align-self:stretch!important;flex-direction:row!important;flex:1 1 100%!important;overflow-x:auto;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.06)}.dock .tip{display:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+<div style="min-height: 100vh; color: #F2F4F8; font-family: 'Geist', system-ui, sans-serif; display: flex; flex-wrap: wrap; background-color: #050608; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 48px 48px">
+<nav class="dock" aria-label="Main" style="flex: 0 0 76px; position: sticky; top: 0; height: 100vh; z-index: 10; align-self: flex-start; box-sizing: border-box; padding: 18px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; border-right: 1px solid rgba(255,255,255,0.06); background: #07080B">
+<a href="dashboard.html" aria-label="NARA Calling Hub home" style="width: 42px; height: 42px; border-radius: 14px; background: #C8FF5A; color: #0B0F02; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex: 0 0 auto; position: relative"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"></path></svg><span class="tip" aria-hidden="true">NARA Calling Hub · super AI</span></a>
+<a href="dashboard.html" aria-label="Dashboard" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg><span class="tip" aria-hidden="true">Dashboard</span></a>
+<a href="team-board.html" aria-label="Team board" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="2"></rect><rect x="13" y="3" width="8" height="8" rx="2"></rect><rect x="3" y="13" width="8" height="8" rx="2"></rect><path d="M14 17h6M17 14v6"></path></svg><span class="tip" aria-hidden="true">Team board</span></a>
+<a href="monitoring.html" aria-label="Monitoring" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-8 4 16 3-8h6"></path></svg><span class="tip" aria-hidden="true">Monitoring</span></a>
+<a href="live-calls.html" aria-label="Live calls, 3 live" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg><span style="position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 99px; background: #C8FF5A; box-shadow: 0 0 0 3px #07080B"></span><span class="tip" aria-hidden="true">Live calls · 3</span></a>
+<a href="analytics.html" aria-label="Analytics" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="tip" aria-hidden="true">Analytics</span></a>
+<a href="history.html" aria-current="page" aria-label="History" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: rgba(200,255,90,0.12); color: #C8FF5A"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span class="tip" aria-hidden="true">History</span></a>
+<span aria-hidden="true" style="width: 24px; height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; flex: 0 0 auto"></span>
+<a href="agents.html" aria-label="Agents" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg><span class="tip" aria-hidden="true">Agents</span></a>
+<a href="teams.html" aria-label="Teams" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5z"></path><path d="m2 13 10 5 10-5"></path></svg><span class="tip" aria-hidden="true">Teams</span></a>
+<a href="targets.html" aria-label="Targets" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg><span class="tip" aria-hidden="true">Targets</span></a>
+<a href="leads.html" aria-label="Leads" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2"></circle><path d="M6 16a3 3 0 0 1 6 0M15 10h3M15 14h3"></path></svg><span class="tip" aria-hidden="true">Leads</span></a>
+<a href="billing.html" aria-label="Billing" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg><span class="tip" aria-hidden="true">Billing</span></a>
+<a href="#theme" role="button" data-theme-toggle aria-label="Switch between light and dark version" style="margin-top: auto; width: 42px; height: 42px; flex: 0 0 auto; border-radius: 14px; display: flex; align-items: center; justify-content: center"><svg class="th-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="th-moon" aria-hidden="true" style="display: none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg><span class="tip" aria-hidden="true">Light / dark version</span></a>
+<a href="login.html" data-signout aria-label="Manager, administrator. Sign out" style="width: 38px; height: 38px; flex: 0 0 auto; border-radius: 99px; background: #1A1D24; border: 1px solid rgba(255,255,255,0.1); color: #F2F4F8; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; position: relative">MA<span class="tip" aria-hidden="true">Manager · Sign out</span></a>
+</nav>
+<main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<div style="width: 100%; max-width: 1360px; box-sizing: border-box; padding: 36px clamp(16px, 3vw, 36px) 72px; display: flex; flex-direction: column; gap: 24px">
+
+<header style="display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 8px; margin-right: auto">
+<span style="display: flex; align-items: center; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #9AA2B3">TODAY · ENDED CALLS <span style="color: #FFC24B; border: 1px solid rgba(255,194,75,0.4); border-radius: 99px; padding: 3px 9px; letter-spacing: 0.14em">SAMPLE DATA</span></span>
+<h1 style="margin: 0; font-size: 44px; font-weight: 300; letter-spacing: -0.03em">Call history</h1>
+</div>
+<dl style="margin: 0; display: flex; gap: 32px">
+<div style="display: flex; flex-direction: column-reverse; gap: 4px"><dt style="font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #9AA2B3">SHOWING</dt><dd style="margin: 0; font-size: 36px; font-weight: 200">{{ count }}</dd></div>
+<div style="display: flex; flex-direction: column-reverse; gap: 4px"><dt style="font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #9AA2B3">FLAGGED</dt><dd style="margin: 0; font-size: 36px; font-weight: 200; color: #FF7A6B">{{ flagged }}</dd></div>
+</dl>
+</header>
+
+<div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center">
+<label style="flex: 1 1 300px; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 18px; border-radius: 99px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #9AA2B3; font-size: 14px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="hist-search" aria-label="Search by agent name" placeholder="Search by agent…" onInput="{{ onSearch }}" style="flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: #F2F4F8; font: inherit"></label>
+<div role="group" aria-label="Filter" style="display: flex; gap: 2px; padding: 4px; border-radius: 99px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08)">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="3"><button onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="{{ f.style }}">{{ f.label }}</button></sc-for>
+</div>
+</div>
+
+<div style="overflow-x: auto; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02)">
+<div role="table" aria-label="Ended calls" style="min-width: 900px">
+<div role="row" style="display: grid; grid-template-columns: 80px minmax(160px, 1.2fr) 140px 90px 120px minmax(170px, 1.2fr) 110px; gap: 16px; padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.07); font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #9AA2B3">
+<span role="columnheader">ENDED</span><span role="columnheader">AGENT</span><span role="columnheader">CLIENT</span><span role="columnheader">LENGTH</span><span role="columnheader">SCORE</span><span role="columnheader">FLAG</span><span role="columnheader">OUTCOME</span>
+</div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+<a role="row" class="hrow" href="active-call.html" aria-label="{{ r.aria }}" style="display: grid; grid-template-columns: 80px minmax(160px, 1.2fr) 140px 90px 120px minmax(170px, 1.2fr) 110px; gap: 16px; align-items: center; padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #F2F4F8">
+<span role="cell" style="font-family: 'Geist Mono', monospace; font-size: 14px; color: #9AA2B3">{{ r.t }}</span>
+<span role="cell" style="display: flex; align-items: center; gap: 12px"><span style="width: 34px; height: 34px; flex: 0 0 auto; border-radius: 99px; border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600">{{ r.ini }}</span><span style="font-size: 15px">{{ r.agent }}</span></span>
+<span role="cell" style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #C9D0DD">{{ r.client }}</span>
+<span role="cell" style="font-family: 'Geist Mono', monospace; font-size: 14px">{{ r.len }}</span>
+<span role="cell" style="display: flex; align-items: center; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 14px; width: 24px">{{ r.score }}</span><span style="flex: 1; height: 4px; border-radius: 99px; background: rgba(255,255,255,0.06); overflow: hidden"><span style="{{ r.barStyle }}"></span></span></span>
+<span role="cell" style="{{ r.flagStyle }}">{{ r.flag }}</span>
+<span role="cell" style="{{ r.outStyle }}">{{ r.out }}</span>
+</a>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; color: #9AA2B3">No calls match. Clear the search or pick another filter.</p></sc-if>
+<span style="font-size: 13px; color: #9AA2B3">Click any call to open its full review.</span>
+</div>
+</main>
+</div>
+</template>
+<script>
+/* Light theme engine: maps every colour in a style declaration to its light-version equivalent.
+   Neutrals flip lightness (keeping their slight blue bias), accents keep their hue but get darker
+   wherever they are used as text, strokes or borders, so they stay readable on white. */
+const __TH = (() => {
+  const RE = /#[0-9a-fA-F]{8}\b|#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b|rgba?\([^)]*\)/g;
+  const TEXTISH = { 'color': 1, 'stroke': 1, 'fill': 1, 'stop-color': 1, 'caret-color': 1, 'outline': 1, 'outline-color': 1, 'accent-color': 1, '-webkit-text-fill-color': 1 };
+  const memo = new Map();
+  function parse(c) {
+    if (c[0] === '#') {
+      let h = c.slice(1);
+      if (h.length === 3) h = h.split('').map((x) => x + x).join('');
+      const n = parseInt(h.slice(0, 6), 16);
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255, a: h.length === 8 ? parseInt(h.slice(6), 16) / 255 : 1 };
+    }
+    const p = c.slice(c.indexOf('(') + 1, -1).split(/[\s,\/]+/).filter(Boolean).map(parseFloat);
+    return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 };
+  }
+  function hsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2;
+    if (mx === mn) return [0, 0, l];
+    const d = mx - mn, s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+    let h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return [h / 6, s, l];
+  }
+  function rgb(h, s, l) {
+    if (s === 0) { const v = Math.round(l * 255); return [v, v, v]; }
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q;
+    const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; };
+    return [Math.round(f(h + 1 / 3) * 255), Math.round(f(h) * 255), Math.round(f(h - 1 / 3) * 255)];
+  }
+  function out(r, g, b, a) { a = Math.round(a * 1000) / 1000; return a >= 1 ? '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('') : 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'; }
+  function accentOf(c) { const [, s, l] = hsl(c.r, c.g, c.b); return s > 0.35 && l >= 0.2 && l <= 0.89; }
+  function color(str, prop, keepText) {
+    const c = parse(str);
+    const [h, s, l] = hsl(c.r, c.g, c.b);
+    const textish = !!TEXTISH[prop];
+    if (s > 0.35 && l >= 0.2 && l <= 0.89) {
+      const deg = h * 360;
+      if (deg >= 60 && deg <= 110) {
+        if (textish) return out(22, 133, 177, c.a < 0.5 ? Math.min(1, c.a * 1.6) : c.a);
+        if (prop.indexOf('border') === 0) return out(41, 175, 229, Math.min(1, c.a * 1.25));
+        if (prop === 'box-shadow' || prop === 'text-shadow') return out(41, 175, 229, c.a * 0.55);
+        return out(41, 175, 229, c.a);
+      }
+      if (deg > 172 && deg <= 200 && textish) { const [r, g, b] = rgb(172 / 360, Math.min(s, 0.95), Math.min(l, 0.32)); return out(r, g, b, c.a < 0.5 ? Math.min(1, c.a * 1.6) : c.a); }
+      if (textish) { const [r, g, b] = rgb(h, Math.min(s, 0.95), Math.min(l, 0.34)); return out(r, g, b, c.a < 0.5 ? Math.min(1, c.a * 1.6) : c.a); }
+      if (prop.indexOf('border') === 0) { const [r, g, b] = rgb(h, s, Math.min(l, 0.46)); return out(r, g, b, Math.min(1, c.a * 1.25)); }
+      if (prop === 'box-shadow' || prop === 'text-shadow') return out(c.r, c.g, c.b, c.a * 0.55);
+      return str;
+    }
+    if (keepText && textish) return str;
+    if (prop === 'box-shadow' && l < 0.3 && c.a < 1) return out(20, 26, 38, c.a * 0.2);
+    const [r, g, b] = rgb(h, s, Math.min(0.98, 1 - l));
+    return out(r, g, b, c.a);
+  }
+  function value(v, prop, keepText) { return v.replace(RE, (m) => color(m, prop, keepText)); }
+  function block(text) {
+    const hit = memo.get(text); if (hit !== undefined) return hit;
+    let keep = false;
+    const bg = /(?:^|;)\s*background(?:-color)?\s*:\s*([^;]+)/i.exec(text);
+    if (bg && !/gradient/i.test(bg[1])) { const c = (bg[1].match(RE) || [])[0]; if (c) { const p = parse(c); if (p.a > 0.9 && accentOf(p)) keep = true; } }
+    const res = text.replace(/([a-zA-Z-]+)(\s*:\s*)([^;{}]+)/g, (m, prop, sep, val) => {
+      if (!RE.test(val)) { RE.lastIndex = 0; return m; }
+      RE.lastIndex = 0;
+      return prop + sep + value(val, prop.toLowerCase(), keep);
+    });
+    if (memo.size > 5000) memo.clear();
+    memo.set(text, res);
+    return res;
+  }
+  function css(text) { return text.replace(/\{([^{}]*)\}/g, (m, body) => '{' + block(body) + '}'); }
+  function attr(name, v) { return (name === 'style') ? block(v) : (name === 'stroke' || name === 'fill' || name === 'stop-color') ? value(v, name, false) : v; }
+  function load() { try { return localStorage.getItem('mycc-theme') === 'light'; } catch (e) { return false; } }
+  function save(light) { try { localStorage.setItem('mycc-theme', light ? 'light' : 'dark'); } catch (e) {} }
+  return { block, css, attr, value, load, save };
+})();
+
+/* Tiny template runtime: renders <template id="tpl"> with {{holes}}, <sc-for>, <sc-if> and on* handlers,
+   then patches the live DOM in place so running CSS animations are not restarted on each update. */
+class DCLogic {
+  constructor(props) { this.props = props || {}; this.state = {}; }
+  setState(patch) { Object.assign(this.state, typeof patch === 'function' ? patch(this.state) : patch); __render(); }
+  forceUpdate() { __render(); }
+}
+let __comp = null;
+let __light = (typeof window.__INIT_THEME === 'string') ? window.__INIT_THEME === 'light' : __TH.load();
+const __HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+function __get(path, scope) {
+  path = path.trim();
+  if (path === 'true') return true;
+  if (path === 'false') return false;
+  if (path === 'null') return null;
+  if (/^-?\d+(\.\d+)?$/.test(path)) return +path;
+  return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), scope);
+}
+function __whole(v) { const m = v && v.match(/^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/); return m ? m[1] : null; }
+function __interp(s, scope) { return s.replace(__HOLE, (_, p) => { const v = __get(p, scope); return v == null ? '' : String(v); }); }
+function __bind(el, type) {
+  el.__bound = el.__bound || {};
+  if (el.__bound[type]) return;
+  el.__bound[type] = true;
+  el.addEventListener(type, (e) => { const fn = el.__h && el.__h[type]; if (fn) fn(e); });
+}
+function __walk(node, scope, out) {
+  if (node.nodeType === 3) { out.appendChild(document.createTextNode(__interp(node.nodeValue, scope))); return; }
+  if (node.nodeType !== 1) return;
+  const tag = node.localName;
+  if (tag === 'sc-for') {
+    const list = __get(__whole(node.getAttribute('list')) || '', scope) || [];
+    const as = node.getAttribute('as') || 'item';
+    list.forEach((it, i) => { const s = Object.create(scope); s[as] = it; s.$index = i; node.childNodes.forEach((c) => __walk(c, s, out)); });
+    return;
+  }
+  if (tag === 'sc-if') {
+    if (__get(__whole(node.getAttribute('value')) || '', scope)) node.childNodes.forEach((c) => __walk(c, scope, out));
+    return;
+  }
+  const svg = node.namespaceURI === 'http://www.w3.org/2000/svg';
+  const el = svg ? document.createElementNS(node.namespaceURI, node.tagName) : document.createElement(tag);
+  el.__h = {};
+  for (const a of Array.from(node.attributes)) {
+    if (a.name.startsWith('hint-')) continue;
+    const w = __whole(a.value);
+    if (/^on[a-z]/.test(a.name)) {
+      const fn = w ? __get(w, scope) : null;
+      if (typeof fn === 'function') el.__h[a.name.slice(2)] = fn;
+      continue;
+    }
+    const v = w ? __get(w, scope) : __interp(a.value, scope);
+    if (v == null) continue;
+    el.setAttribute(a.name, __light ? __TH.attr(a.name, String(v)) : String(v));
+  }
+  node.childNodes.forEach((c) => __walk(c, scope, el));
+  out.appendChild(el);
+}
+function __adopt(el) {
+  if (el.nodeType !== 1) return;
+  Object.keys(el.__h || {}).forEach((t) => __bind(el, t));
+  el.childNodes.forEach(__adopt);
+}
+function __same(a, b) { return a.nodeType === b.nodeType && (a.nodeType !== 1 || (a.namespaceURI === b.namespaceURI && a.tagName === b.tagName)); }
+function __patch(cur, next) {
+  if (cur.nodeType === 3) { if (cur.nodeValue !== next.nodeValue) cur.nodeValue = next.nodeValue; return; }
+  for (const a of Array.from(cur.attributes)) if (!next.hasAttribute(a.name)) cur.removeAttribute(a.name);
+  for (const a of Array.from(next.attributes)) if (cur.getAttribute(a.name) !== a.value) cur.setAttribute(a.name, a.value);
+  cur.__h = next.__h || {};
+  Object.keys(cur.__h).forEach((t) => __bind(cur, t));
+  __patchChildren(cur, next);
+}
+function __patchChildren(cur, next) {
+  const a = Array.from(cur.childNodes), b = Array.from(next.childNodes);
+  for (let i = 0; i < b.length; i++) {
+    if (i < a.length && __same(a[i], b[i])) __patch(a[i], b[i]);
+    else if (i < a.length) { __adopt(b[i]); cur.replaceChild(b[i], a[i]); }
+    else { __adopt(b[i]); cur.appendChild(b[i]); }
+  }
+  for (let i = b.length; i < a.length; i++) cur.removeChild(a[i]);
+}
+function __render() {
+  const vals = __comp.renderVals() || {};
+  const holder = document.createElement('div');
+  document.getElementById('tpl').content.childNodes.forEach((c) => __walk(c, vals, holder));
+  __patchChildren(document.getElementById('app'), holder);
+}
+const __TH_CSS = '[data-theme-toggle] .th-moon{display:none!important}[data-theme-toggle] .th-sun{display:inline!important}html[data-theme=light] [data-theme-toggle] .th-sun{display:none!important}html[data-theme=light] [data-theme-toggle] .th-moon{display:inline!important}';
+function __applyTheme() {
+  const root = document.documentElement;
+  root.dataset.theme = __light ? 'light' : 'dark';
+  root.style.colorScheme = __light ? 'light' : 'dark';
+  document.querySelectorAll('head style').forEach((st) => {
+    if (st.id === '__thcss' || st.id === '__rolecss') return;
+    if (st.__orig === undefined) st.__orig = st.textContent;
+    st.textContent = __light ? __TH.css(st.__orig) : st.__orig;
+  });
+  let tc = document.getElementById('__thcss');
+  if (!tc) { tc = document.createElement('style'); tc.id = '__thcss'; tc.textContent = __TH_CSS; document.head.appendChild(tc); }
+  const t = document.getElementById('__toast'); if (t) { t.remove(); }
+  document.querySelectorAll('[data-theme-toggle]').forEach((b) => { b.setAttribute('aria-pressed', String(__light)); b.setAttribute('title', __light ? 'Switch to dark version' : 'Switch to light version'); });
+}
+function __setTheme(light) {
+  if (light === __light) return;
+  __light = light; __TH.save(light);
+  __applyTheme(); if (__comp) __render(); __applyTheme();
+  try { if (window.parent !== window) window.parent.postMessage({ pageTheme: light ? 'light' : 'dark' }, '*'); } catch (e) {}
+}
+window.__setTheme = __setTheme;
+function __toast(msg) {
+  let t = document.getElementById('__toast');
+  if (!t) {
+    t = document.createElement('div'); t.id = '__toast'; t.setAttribute('role', 'status');
+    const css = "position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);z-index:9999;display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:99px;background:rgba(12,14,18,.96);border:1px solid rgba(200,255,90,.45);color:#F2F4F8;font:14px Geist,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.6);opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;max-width:calc(100% - 32px)";
+    t.style.cssText = __light ? __TH.block(css) : css;
+    document.body.appendChild(t);
+  }
+  t.innerHTML = '<span style="color:' + (__light ? '#4A7A00' : '#C8FF5A') + '">\u2713</span>';
+  const s = document.createElement('span'); s.textContent = msg; t.appendChild(s);
+  const d = document.createElement('span'); d.textContent = 'demo'; d.style.cssText = "font:11px 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:" + (__light ? '#5E6678' : '#7F889B'); t.appendChild(d);
+  requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateX(-50%)'; });
+  clearTimeout(t.__h); t.__h = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 2200);
+}
+function __fallback(e) {
+  if (e.__dial || !e.target.isConnected) return;
+  if (e.target.closest && e.target.closest('#__dial, #__dial-tab, [data-dialer-toggle]')) return;
+  const tg = e.target.closest && e.target.closest('[data-theme-toggle]');
+  if (tg) { e.preventDefault(); __setTheme(!__light); return; }
+  const el = e.target.closest && e.target.closest('button, a[href="#"]');
+  if (!el || el.closest('.door')) return;
+  if (el.tagName === 'BUTTON' && el.__h && el.__h.click) return;
+  if (el.tagName === 'A') e.preventDefault();
+  let label = (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim();
+  if (label.length > 42) label = label.slice(0, 40) + '…';
+  __toast((label || 'Action') + ' — done');
+}
+window.addEventListener('message', (e) => { const d = e.data; if (d && typeof d.deckTheme === 'string') __setTheme(d.deckTheme === 'light'); });
+window.addEventListener('storage', (e) => { if (e.key === 'mycc-theme') __setTheme(e.newValue === 'light'); });
+
+/* Roles: admin sees everything, team lead everything except billing, agent only the agent screens. */
+const __ROLE = (() => {
+  const OPEN = { 'index.html': 1, 'login.html': 1 };
+  const AGENT = { 'agent-home.html': 1, 'agent-focus.html': 1 };
+  const LEAD_BLOCK = { 'billing.html': 1 };
+  const role = () => { try { return localStorage.getItem('nara-role') || 'admin'; } catch (e) { return 'admin'; } };
+  const page = (h) => (String(h || '').split('#')[0].split('?')[0].split('/').pop() || 'index.html');
+  const inDeck = () => { try { return window.parent !== window; } catch (e) { return true; } };
+  const allowed = (p, r) => OPEN[p] || (r === 'agent' ? !!AGENT[p] : r === 'lead' ? !LEAD_BLOCK[p] : true);
+  const home = (r) => r === 'agent' ? 'agent-home.html' : 'dashboard.html';
+  function guard() {
+    const r = role(); document.documentElement.dataset.role = r;
+    if (inDeck()) return false;
+    const p = page(location.pathname);
+    if (!allowed(p, r)) { location.replace(home(r)); return true; }
+    return false;
+  }
+  function onClick(e) {
+    if (inDeck()) return;
+    const a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    const h = a.getAttribute('href'); if (!/\.html(#.*)?$/.test(h)) return;
+    const r = role(), p = page(h);
+    if (allowed(p, r)) return;
+    e.preventDefault(); e.stopPropagation();
+    if (r === 'agent') { location.href = home(r); return; }
+    if (typeof __toast === 'function') __toast(p === 'billing.html' ? 'Billing is for admins only' : 'That screen needs a different role');
+  }
+  const css = 'html[data-role=lead] nav.dock a[href="billing.html"]{display:none!important}';
+  return { guard, onClick, css, role };
+})();
+
+function __mount(Cls) {
+  if (__ROLE.guard()) return;
+  document.addEventListener('click', __ROLE.onClick, true);
+  { const rs = document.createElement('style'); rs.id = '__rolecss'; rs.textContent = __ROLE.css; document.head.appendChild(rs); } __applyTheme(); __comp = new Cls({}); __render(); __applyTheme(); document.addEventListener('click', __fallback); if (__comp.componentDidMount) __comp.componentDidMount(); __DIAL.mount(); __applyTheme(); }
+
+/* Agent dialer: a slide-out panel pulled from a tab on the right edge.
+   Statuses (available, break, lunch, restroom, coaching, meeting, training, wrap-up, offline),
+   keypad, live call controls, coaching request, transfer, wrap-up with disposition, recent calls, contacts. */
+const __DIAL = (() => {
+  const CSS = `
+#__dial-tab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:9000;width:46px;padding:16px 0 14px;display:flex;flex-direction:column;align-items:center;gap:12px;border-radius:18px 0 0 18px;background:#0E1117;border:1px solid rgba(255,255,255,.14);border-right:0;color:#F2F4F8;box-shadow:-12px 0 40px rgba(0,0,0,.45);cursor:pointer;font:inherit;transition:right .3s,background .2s}
+#__dial-tab:hover{background:#151A22}
+#__dial-tab .ico{width:30px;height:30px;border-radius:10px;background:#C8FF5A;color:#0B0F02;display:flex;align-items:center;justify-content:center}
+#__dial-tab .lbl{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.28em;color:#C9D0DD}
+#__dial-tab .dot{width:10px;height:10px;border-radius:99px}
+#__dial-tab:focus-visible,#__dial button:focus-visible,#__dial input:focus-visible,#__dial textarea:focus-visible,#__dial select:focus-visible{outline:2px solid #C8FF5A;outline-offset:2px}
+#__dial{position:fixed;top:0;right:0;bottom:0;z-index:9001;width:min(410px,100vw);box-sizing:border-box;display:flex;flex-direction:column;background:#0A0C10;border-left:1px solid rgba(255,255,255,.12);box-shadow:-30px 0 80px rgba(0,0,0,.6);color:#F2F4F8;font-family:'Geist',system-ui,sans-serif;transform:translateX(105%);transition:transform .38s cubic-bezier(.2,.7,.2,1);overflow:hidden}
+#__dial.open{transform:none}
+#__dial button{font-family:inherit;cursor:pointer;color:inherit}
+#__dial button:disabled{cursor:not-allowed;opacity:.35}
+#__dial .hd{display:flex;align-items:center;gap:12px;padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+#__dial .av{width:42px;height:42px;flex:0 0 auto;border-radius:99px;border:2px solid #C8FF5A;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:#0F1218}
+#__dial .who{display:flex;flex-direction:column;gap:2px;min-width:0;margin-right:auto}
+#__dial .who b{font-weight:500;font-size:15px}
+#__dial .who span{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;color:#9AA2B3;letter-spacing:.06em}
+#__dial .x{width:40px;height:40px;border-radius:99px;border:1px solid rgba(255,255,255,.14);background:transparent;display:flex;align-items:center;justify-content:center}
+#__dial .stbtn{margin:14px 18px 0;display:flex;align-items:center;gap:10px;height:50px;padding:0 16px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);font-size:15px;text-align:left}
+#__dial .stbtn .dot{width:10px;height:10px;border-radius:99px;flex:0 0 auto}
+#__dial .stbtn .t{margin-left:auto;font-family:'Geist Mono',ui-monospace,monospace;font-size:13px;color:#C9D0DD;font-variant-numeric:tabular-nums}
+#__dial .stbtn .car{font-family:'Geist Mono',monospace;color:#9AA2B3}
+#__dial .menu{margin:8px 18px 0;padding:8px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:#0E1117;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+#__dial .menu button{display:flex;align-items:center;gap:10px;height:46px;padding:0 12px;border-radius:12px;border:1px solid transparent;background:transparent;font-size:14px;text-align:left}
+#__dial .menu button:hover{background:rgba(255,255,255,.05)}
+#__dial .menu button[aria-pressed="true"]{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.06)}
+#__dial .menu .dot{width:9px;height:9px;border-radius:99px;flex:0 0 auto}
+#__dial .bd{flex:1;overflow-y:auto;padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
+#__dial .tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;padding:4px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+#__dial .tabs button{height:36px;border:0;border-radius:99px;background:transparent;font-size:13px;color:#9AA2B3}
+#__dial .tabs button[aria-selected="true"]{background:#F2F4F8;color:#050608}
+#__dial .line{display:flex;align-items:center;gap:8px;font-size:12px;color:#9AA2B3}
+#__dial .line select{flex:1;height:38px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0E1117;color:#F2F4F8;font:inherit;font-size:13px;padding:0 10px}
+#__dial .num{display:flex;align-items:center;gap:8px;height:64px;padding:0 6px 0 14px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1)}
+#__dial .num input{flex:1;min-width:0;background:transparent;border:0;outline:none;color:#F2F4F8;font-family:'Geist Mono',ui-monospace,monospace;font-size:26px;letter-spacing:.04em}
+#__dial .num input::placeholder{color:#5C6475;font-size:18px;letter-spacing:0}
+#__dial .bk{width:44px;height:44px;border-radius:12px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;color:#9AA2B3}
+#__dial .pad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#__dial .pad button{height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:background .15s}
+#__dial .pad button:hover{background:rgba(255,255,255,.07)}
+#__dial .pad button:active{background:rgba(200,255,90,.16)}
+#__dial .pad b{font-weight:300;font-size:24px;line-height:1}
+#__dial .pad small{font-family:'Geist Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.18em;color:#858EA0}
+#__dial .callbtn{height:60px;border-radius:99px;border:0;background:#3DD68C;color:#04140C;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 0 40px rgba(61,214,140,.3)}
+#__dial .endbtn{height:60px;border-radius:99px;border:0;background:#FF5A4E;color:#1A0503;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px}
+#__dial .why{font-size:13px;color:#FFC24B;text-align:center}
+#__dial .row{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);text-align:left}
+#__dial .row:hover{background:rgba(255,255,255,.05)}
+#__dial .row .ic{width:34px;height:34px;flex:0 0 auto;border-radius:99px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);color:#C9D0DD}
+#__dial .row .ic.in{color:#5EE6F0}#__dial .row .ic.out{color:#C8FF5A}#__dial .row .ic.miss{color:#FF7A6B}
+#__dial .row .tx{display:flex;flex-direction:column;gap:2px;min-width:0;margin-right:auto}
+#__dial .row .tx b{font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#__dial .row .tx span{font-size:12px;color:#9AA2B3}
+#__dial .row .go{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;color:#3DD68C;white-space:nowrap}
+#__dial .card{border-radius:22px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:18px;display:flex;flex-direction:column;gap:12px}
+#__dial .card.live{border-color:rgba(61,214,140,.45);background:rgba(61,214,140,.06)}
+#__dial .card.ring{border-color:rgba(94,230,240,.45);background:rgba(94,230,240,.06)}
+#__dial .card.pause{border-color:rgba(255,194,75,.45);background:rgba(255,194,75,.06)}
+#__dial .card.coach{border-color:rgba(160,139,255,.5);background:rgba(160,139,255,.07)}
+#__dial .eb{font-family:'Geist Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.22em;color:#9AA2B3}
+#__dial .eb.g{color:#3DD68C}#__dial .eb.c{color:#5EE6F0}#__dial .eb.a{color:#FFC24B}#__dial .eb.p{color:#B7A6FF}
+#__dial .big{font-size:24px;font-weight:400;letter-spacing:-.01em}
+#__dial .clock{font-family:'Geist Mono',ui-monospace,monospace;font-size:44px;font-weight:300;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+#__dial .sub{font-size:13px;color:#A3ABBB;line-height:1.45}
+#__dial .wv{display:flex;align-items:center;gap:3px;height:28px}
+#__dial .wv span{display:block;width:3px;border-radius:2px;background:#3DD68C;animation:__dwave 1s ease-in-out infinite;transform-origin:center}
+@keyframes __dwave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes __dring{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+#__dial .ringdot{position:relative;width:12px;height:12px}
+#__dial .ringdot::before,#__dial .ringdot::after{content:"";position:absolute;inset:0;border-radius:99px;background:#5EE6F0}
+#__dial .ringdot::before{animation:__dring 1.2s ease-out infinite}
+#__dial .tip{display:flex;gap:10px;padding:12px 14px;border-radius:16px;background:rgba(200,255,90,.07);border:1px solid rgba(200,255,90,.3);font-size:14px;line-height:1.45}
+#__dial .tip i{font-style:normal;font-family:'Geist Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.2em;color:#C8FF5A;padding-top:3px;white-space:nowrap}
+#__dial .ctl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#__dial .ctl button{height:68px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:11px;color:#C9D0DD}
+#__dial .ctl button:hover{background:rgba(255,255,255,.07)}
+#__dial .ctl button[aria-pressed="true"]{background:#F2F4F8;color:#050608;border-color:#F2F4F8}
+#__dial .ctl button.help[aria-pressed="true"]{background:#A08BFF;border-color:#A08BFF;color:#0D0820}
+#__dial .ctl button.rec[aria-pressed="true"]{background:#FF5A4E;border-color:#FF5A4E;color:#1A0503}
+#__dial .chips{display:flex;flex-wrap:wrap;gap:8px}
+#__dial .chips button{height:40px;padding:0 14px;border-radius:99px;border:1px solid rgba(255,255,255,.14);background:transparent;font-size:13px}
+#__dial .chips button[aria-pressed="true"]{background:#C8FF5A;border-color:#C8FF5A;color:#0B0F02}
+#__dial textarea{width:100%;box-sizing:border-box;min-height:80px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:#0E1117;color:#F2F4F8;font:inherit;font-size:14px;padding:10px 12px;resize:vertical}
+#__dial .primary{height:52px;border-radius:99px;border:0;background:#C8FF5A;color:#0B0F02;font-size:15px;font-weight:600}
+#__dial .ghost{height:46px;border-radius:99px;border:1px solid rgba(255,255,255,.16);background:transparent;font-size:14px}
+#__dial .ft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border-top:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.07)}
+#__dial .ft div{background:#0A0C10;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+#__dial .ft span{font-size:11px;color:#9AA2B3}
+#__dial .ft b{font-family:'Geist Mono',ui-monospace,monospace;font-weight:400;font-size:14px}
+#__dial .priv{display:flex;align-items:center;gap:6px;font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;color:#9AA2B3}
+#__dial .demo{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:16px;border:1px dashed rgba(200,255,90,.55);background:rgba(200,255,90,.06);color:#C8FF5A;font-size:14px;font-weight:500}
+#__dial .demo:hover{background:rgba(200,255,90,.12)}
+#__dial .golive{height:52px;border-radius:99px;border:0;background:#C8FF5A;color:#0B0F02;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+#__dial .sr,#__dial-tab .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.st-avail{background:#3DD68C}.st-call{background:#C8FF5A}.st-wrap{background:#5EE6F0}.st-break{background:#FFC24B}.st-lunch{background:#FF9F43}.st-rest{background:#F7D154}.st-coach{background:#A08BFF}.st-meet{background:#7FA8FF}.st-train{background:#E58BFF}.st-off{background:#6B7385}
+@media (max-width:560px){#__dial-tab{top:auto;bottom:96px;transform:none}}
+@media (prefers-reduced-motion:reduce){#__dial,#__dial *{animation:none!important;transition:none!important}}
+`;
+  const I = {
+    phone: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>',
+    end: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15c5-5 13-5 18 0l-2.5 2.5-3-1.5v-2.5a10 10 0 0 0-7 0V16l-3 1.5z"></path></svg>',
+    x: '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>',
+    back: '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-6-7z"></path><path d="m12 9 5 5M17 9l-5 5"></path></svg>',
+    mute: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3"></path><path d="M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18"></path></svg>',
+    hold: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6v12M15 6v12"></path></svg>',
+    keys: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="5" r="1.6"></circle><circle cx="12" cy="5" r="1.6"></circle><circle cx="18" cy="5" r="1.6"></circle><circle cx="6" cy="11" r="1.6"></circle><circle cx="12" cy="11" r="1.6"></circle><circle cx="18" cy="11" r="1.6"></circle><circle cx="6" cy="17" r="1.6"></circle><circle cx="12" cy="17" r="1.6"></circle><circle cx="18" cy="17" r="1.6"></circle></svg>',
+    xfer: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg>',
+    add: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"></path></svg>',
+    rec: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3.5" fill="currentColor"></circle></svg>',
+    help: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-2a2 2 0 0 0-4 0"></path></svg>',
+    note: '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3h9l4 4v14H6z"></path><path d="M9 12h7M9 16h5"></path></svg>',
+    in: '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 7 7 17M7 9v8h8"></path></svg>',
+    out: '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"></path></svg>',
+    lock: '<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>',
+    play: '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"></path></svg>',
+    miss: '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 8 6 6 4-4 6 6M20 12v4h-4"></path></svg>'
+  };
+  const STATUSES = [
+    ['avail', 'Available', 'Ready for calls'], ['break', 'Break', 'Short break'], ['lunch', 'Lunch', 'Lunch break'], ['rest', 'Restroom', 'Back in a few minutes'],
+    ['coach', 'Coaching', 'Session with your team lead'], ['meet', 'Meeting', 'Team meeting'], ['train', 'Training', 'Learning session'], ['wrap', 'After-call work', 'Finishing notes'], ['off', 'Offline', 'Signed out of the queue']
+  ];
+  const NAME = Object.fromEntries(STATUSES.map((s) => [s[0], s[1]]));
+  const LINES = ['Sales line · Ext. 1002', 'Retention line', 'Withheld number'];
+  const REF = (id) => 'Client C-' + String(id).slice(-4);
+  const RECENT = [['out', REF('6610023841'), 'Outbound · 4:12 · 18:52', '6610023841'], ['in', REF('1526202626'), 'Inbound · 24:51 · 18:44', '1526202626'], ['miss', REF('3307715520'), 'Missed · 18:31', '3307715520'], ['out', REF('7741056620'), 'Outbound · 11:20 · 17:05', '7741056620'], ['out', REF('4418820193'), 'No answer · 16:48', '4418820193']];
+  const CONTACTS = [[REF('6610023841'), 'New lead · web form · Clara V.', '6610023841'], [REF('7741056620'), 'Callback requested · tomorrow', '7741056620'], [REF('4418820193'), 'Qualified · ready to sign', '4418820193'], [REF('1526202626'), 'Login issue · account guide sent', '1526202626'], [REF('258638590'), 'Compliance review first', '258638590']];
+  const TIPS = ['Open by confirming why they asked for a call back.', 'Ask on what exact day the funds will become available.', 'Summarise the next step and agree a time for the follow-up.'];
+  const DISP = ['Interested', 'Call back', 'Deposit / FTD', 'Not interested', 'No answer', 'Wrong number'];
+  const XFER = [['Retention queue', '3 waiting'], ['Team lead · Ran', 'Available'], ['Compliance desk', 'Available'], ['Kawthar T · 1004', 'In call']];
+  let st = { open: false, status: 'avail', since: Date.now(), menu: false, tab: 'pad', num: '', line: 0, call: null, wrap: null, xfer: false, dtmf: false, notesOpen: false, todayCalls: 217 };
+  let tab, panel, ticker, lastOpener;
+  const fmt = (ms) => { const x = Math.max(0, Math.floor(ms / 1000)); const h = Math.floor(x / 3600), m = Math.floor((x % 3600) / 60), s = x % 60; return (h ? String(h).padStart(2, '0') + ':' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0'); };
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const paused = () => ['break', 'lunch', 'rest', 'coach', 'meet', 'train', 'off'].includes(st.status);
+  function setStatus(s) { if (st.status !== s) { st.status = s; st.since = Date.now(); } st.menu = false; render(); }
+  const KEY = 'nara-call';
+  function save() { const c = st.call; try { if (c && c.phase === 'live') localStorage.setItem(KEY, JSON.stringify({ label: c.label, start: c.start, line: LINES[st.line], at: Date.now() })); else localStorage.removeItem(KEY); } catch (e) {} window.dispatchEvent(new CustomEvent('nara-call')); }
+  function restore() { try { const d = JSON.parse(localStorage.getItem(KEY) || 'null'); if (d && Date.now() - d.start < 2 * 3600 * 1000) { st.call = { num: '', label: d.label, phase: 'live', start: d.start, mute: false, hold: false, rec: true, help: 0, tip: 0, conf: false, auto: false }; st.status = 'call'; st.since = d.start; } } catch (e) {} }
+  const onFocusPage = () => !!document.querySelector('[data-focus-page]');
+  function goLive() {
+    if (onFocusPage()) { toggle(false); return; }
+    st.open = false; panel.classList.remove('open');
+    if (window.parent !== window) { try { window.parent.postMessage({ deckGoto: 'agent-focus.html' }, '*'); return; } catch (e) {} }
+    location.href = 'agent-focus.html';
+  }
+  function demo() { if (st.call) { goLive(); return; } if (st.wrap) st.wrap = null; if (paused() || st.status === 'wrap') { st.status = 'avail'; st.since = Date.now(); } if (!st.open) toggle(true); st.tab = 'contacts'; render(); setTimeout(() => dial(CONTACTS[0][2], CONTACTS[0][0], true), 700); }
+  function dial(num, label, auto) {
+    num = String(num || '').replace(/[^\d+*#]/g, '');
+    if (!num) { st.err = 'Type a number or pick a contact first.'; render(); return; }
+    if (paused()) { st.err = 'You are on ' + NAME[st.status].toLowerCase() + '. Set yourself Available to call.'; render(); return; }
+    st.err = ''; st.num = '';
+    st.call = { num, label: label || ('Manual dial · C-' + num.slice(-4)), phase: 'ring', start: Date.now(), mute: false, hold: false, rec: true, help: 0, tip: 0, conf: false, auto: !!auto };
+    st.status = 'call'; st.since = Date.now(); st.tab = 'pad'; render();
+    const c = st.call;
+    setTimeout(() => { if (st.call === c && c.phase === 'ring') { c.phase = 'live'; c.start = Date.now(); save(); render(); if (c.auto) setTimeout(() => { if (st.call === c) goLive(); }, 1400); } }, 2600);
+  }
+  function hangup(reason) {
+    if (!st.call) return;
+    const c = st.call; st.call = null; st.dtmf = false; st.xfer = false; save();
+    st.wrap = { num: c.num, label: c.label, dur: c.phase === 'live' ? Date.now() - c.start : 0, disp: c.phase === 'live' ? '' : 'No answer', note: '', reason: reason || '' };
+    st.status = 'wrap'; st.since = Date.now(); st.todayCalls += 1; render();
+  }
+  function saveWrap() { st.wrap = null; setStatus('avail'); }
+  function shell() {
+    const s = document.createElement('style'); s.id = '__dialcss'; s.textContent = CSS; document.head.appendChild(s);
+    tab = document.createElement('button'); tab.id = '__dial-tab'; tab.type = 'button';
+    tab.setAttribute('aria-controls', '__dial'); tab.setAttribute('aria-expanded', 'false');
+    document.body.appendChild(tab);
+    panel = document.createElement('aside'); panel.id = '__dial'; panel.setAttribute('aria-label', 'Agent dialer'); panel.setAttribute('aria-hidden', 'true'); panel.inert = true;
+    document.body.appendChild(panel);
+    tab.addEventListener('click', (e) => { e.__dial = true; toggle(true); });
+    panel.addEventListener('click', onClick);
+    panel.addEventListener('input', (e) => { if (e.target.id === '__dnum') { st.num = e.target.value.replace(/[^\d+*#\s-]/g, ''); if (e.target.value !== st.num) e.target.value = st.num; } if (e.target.id === '__dnote' && st.wrap) st.wrap.note = e.target.value; if (e.target.id === '__dline') st.line = +e.target.value; });
+    panel.addEventListener('change', (e) => { if (e.target.id === '__dline') st.line = +e.target.value; });
+    panel.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.id === '__dnum') { e.preventDefault(); dial(st.num); } });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && st.open) toggle(false); });
+    ticker = setInterval(tick, 1000);
+  }
+  function toggle(open, opener) {
+    st.open = open === undefined ? !st.open : open;
+    if (st.open) lastOpener = opener || document.activeElement;
+    panel.classList.toggle('open', st.open); panel.setAttribute('aria-hidden', String(!st.open)); panel.inert = !st.open;
+    tab.setAttribute('aria-expanded', String(st.open)); tab.style.right = st.open ? '-60px' : '0';
+    document.querySelectorAll('[data-dialer-toggle]').forEach((b) => b.setAttribute('aria-expanded', String(st.open)));
+    render();
+    if (st.open) { const f = panel.querySelector('#__dnum') || panel.querySelector('.x'); if (f) setTimeout(() => f.focus({ preventScroll: true }), 60); }
+    else if (lastOpener && lastOpener.focus) lastOpener.focus({ preventScroll: true });
+  }
+  function tick() {
+    const t = panel.querySelector('[data-since]'); if (t) t.textContent = fmt(Date.now() - st.since);
+    const c = panel.querySelector('[data-callclock]'); if (c && st.call) c.textContent = fmt(Date.now() - st.call.start);
+    if (st.call && st.call.phase === 'live') {
+      const secs = Math.floor((Date.now() - st.call.start) / 1000);
+      const ti = Math.min(TIPS.length - 1, Math.floor(secs / 8));
+      if (ti !== st.call.tip) { st.call.tip = ti; const tt = panel.querySelector('[data-tip]'); if (tt) tt.textContent = TIPS[ti]; }
+    }
+    updateTab();
+  }
+  function updateTab() {
+    const s = st.call ? (st.call.phase === 'ring' ? 'Calling' : 'In call') : NAME[st.status];
+    tab.innerHTML = '<span class="ico">' + I.phone + '</span><span class="lbl">DIALER</span><span class="dot st-' + (st.call ? 'call' : st.status) + '"></span><span class="sr">Open the dialer. Status: ' + esc(s) + '</span>';
+    tab.setAttribute('aria-label', 'Open the dialer. Status: ' + s);
+  }
+  function statusBlock() {
+    const cur = st.call ? 'call' : st.status;
+    const label = st.call ? (st.call.phase === 'ring' ? 'Calling…' : 'On a call') : NAME[st.status];
+    let h = '<button type="button" class="stbtn" data-a="menu" aria-expanded="' + st.menu + '" aria-label="Change status. Current: ' + esc(label) + '"><span class="dot st-' + cur + '"></span><span>' + esc(label) + '</span><span class="t" data-since>' + fmt(Date.now() - st.since) + '</span><span class="car">' + (st.menu ? '▴' : '▾') + '</span></button>';
+    if (st.menu) {
+      h += '<div class="menu" role="group" aria-label="Set your status">' + STATUSES.map((s) => '<button type="button" data-a="status" data-v="' + s[0] + '" aria-pressed="' + (st.status === s[0]) + '"' + (st.call && s[0] !== 'wrap' ? ' disabled' : '') + '><span class="dot st-' + s[0] + '"></span>' + s[1] + '</button>').join('') + '</div>';
+      if (st.call) h += '<p class="why" style="margin:6px 18px 0">Finish the call to change your status.</p>';
+    }
+    return h;
+  }
+  function viewIdle() {
+    const t = st.tab;
+    let h = '<button type="button" class="demo" data-a="demo">' + I.play + 'Demo: agent calls a client</button>';
+    h += '<div class="tabs" role="tablist" aria-label="Dialer views">' + [['pad', 'Keypad'], ['recent', 'Recent'], ['contacts', 'Contacts']].map(([k, l]) => '<button type="button" role="tab" data-a="tab" data-v="' + k + '" aria-selected="' + (t === k) + '">' + l + '</button>').join('') + '</div>';
+    if (t === 'pad') {
+      h += '<label class="line">Call from<select id="__dline" aria-label="Caller line">' + LINES.map((l, i) => '<option value="' + i + '"' + (i === st.line ? ' selected' : '') + '>' + esc(l) + '</option>').join('') + '</select></label>';
+      h += '<div class="num"><input id="__dnum" inputmode="tel" autocomplete="off" aria-label="Number to call" placeholder="Enter a number or client ID" value="' + esc(st.num) + '"><button type="button" class="bk" data-a="del" aria-label="Delete last digit">' + I.back + '</button></div>';
+      const K = [['1', ''], ['2', 'ABC'], ['3', 'DEF'], ['4', 'GHI'], ['5', 'JKL'], ['6', 'MNO'], ['7', 'PQRS'], ['8', 'TUV'], ['9', 'WXYZ'], ['*', ''], ['0', '+'], ['#', '']];
+      h += '<div class="pad">' + K.map(([d, l]) => '<button type="button" data-a="key" data-v="' + d + '" aria-label="' + d + '"><b>' + d + '</b><small>' + (l || '&nbsp;') + '</small></button>').join('') + '</div>';
+      h += '<button type="button" class="callbtn" data-a="call"' + (paused() ? ' disabled' : '') + '>' + I.phone + 'Call</button>';
+      if (paused()) h += '<p class="why" style="margin:0">You are on ' + esc(NAME[st.status].toLowerCase()) + '. Set yourself Available to call.</p>';
+      if (st.err) h += '<p class="why" style="margin:0" role="alert">' + esc(st.err) + '</p>';
+    }
+    if (t === 'recent') h += RECENT.map(([k, n, d, num]) => '<button type="button" class="row" data-a="dialnum" data-v="' + num + '" data-l="' + esc(n) + '"><span class="ic ' + k + '">' + I[k] + '</span><span class="tx"><b>' + esc(n) + '</b><span>' + esc(d) + '</span></span><span class="go">Call back</span></button>').join('');
+    if (t === 'contacts') h += CONTACTS.map(([n, d, num]) => '<button type="button" class="row" data-a="dialnum" data-v="' + num + '" data-l="' + esc(n) + '"><span class="ic">' + I.lock + '</span><span class="tx"><b>' + esc(n) + '</b><span>' + esc(d) + '</span></span><span class="go">Call</span></button>').join('');
+    return h;
+  }
+  function viewCall() {
+    const c = st.call;
+    if (c.phase === 'ring') return '<div class="card ring"><span class="eb c" style="display:flex;align-items:center;gap:10px"><span class="ringdot"></span>CALLING</span><span class="big">' + esc(c.label) + '</span><span class="priv">' + I.lock + 'Number hidden · GDPR</span><span class="sub">From ' + esc(LINES[st.line]) + '</span><span class="clock" data-callclock>' + fmt(Date.now() - c.start) + '</span></div><button type="button" class="endbtn" data-a="end">' + I.end + 'Cancel call</button>';
+    let h = '<div class="card live"><span class="eb g">' + (c.hold ? 'ON HOLD' : c.conf ? 'CONFERENCE · 3 PEOPLE' : 'CONNECTED') + (c.rec ? ' · RECORDING' : '') + '</span><span class="big">' + esc(c.label) + '</span><span class="priv">' + I.lock + 'Number hidden · GDPR</span><div style="display:flex;align-items:center;gap:14px"><span class="clock" data-callclock>' + fmt(Date.now() - c.start) + '</span><span class="wv" aria-hidden="true">' + [10, 18, 26, 14, 22, 12, 24, 16].map((x, i) => '<span style="height:' + x + 'px;animation-delay:' + (i * 0.1).toFixed(1) + 's' + (c.hold || c.mute ? ';animation-play-state:paused;opacity:.35' : '') + '"></span>').join('') + '</span></div></div>';
+    if (!onFocusPage()) h += '<button type="button" class="golive" data-a="golive">' + (c.auto ? 'Opening your live call screen…' : 'Open my live call screen →') + '</button>';
+    h += '<div class="tip"><i>SUPER AI</i><span data-tip>' + esc(TIPS[c.tip]) + '</span></div>';
+    if (c.help === 1) h += '<div class="card coach" role="status"><span class="eb p">HELP REQUESTED</span><span class="sub">Your team lead has been notified and will join in a moment.</span></div>';
+    if (c.help === 2) h += '<div class="card coach" role="status"><span class="eb p">COACH ON THE LINE · WHISPER</span><span class="sub">Ran is listening and can whisper to you. The client can’t hear the coach.</span></div>';
+    const B = (a, icon, label, on, cls) => '<button type="button" class="' + (cls || '') + '" data-a="' + a + '" aria-pressed="' + !!on + '">' + icon + label + '</button>';
+    h += '<div class="ctl">' + B('mute', I.mute, c.mute ? 'Unmute' : 'Mute', c.mute) + B('hold', I.hold, c.hold ? 'Resume' : 'Hold', c.hold) + B('dtmf', I.keys, 'Keypad', st.dtmf) + B('xfer', I.xfer, 'Transfer', st.xfer) + B('conf', I.add, c.conf ? 'In conf.' : 'Add call', c.conf) + B('rec', I.rec, c.rec ? 'Recording' : 'Record', c.rec, 'rec') + B('help', I.help, c.help ? 'Coach' : 'Ask coach', c.help, 'help') + B('notes', I.note, 'Notes', st.notesOpen) + '</div>';
+    if (st.dtmf) h += '<div class="pad">' + ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'].map((d) => '<button type="button" data-a="tone" data-v="' + d + '" aria-label="Send tone ' + d + '"><b>' + d + '</b><small>&nbsp;</small></button>').join('') + '</div>' + (st.tones ? '<p class="sub" style="margin:0;text-align:center">Tones sent: <span style="font-family:\'Geist Mono\',monospace">' + esc(st.tones) + '</span></p>' : '');
+    if (st.xfer) h += '<div style="display:flex;flex-direction:column;gap:8px"><span class="eb">TRANSFER TO</span>' + XFER.map(([n, d]) => '<button type="button" class="row" data-a="doxfer" data-v="' + esc(n) + '"' + (d === 'In call' ? ' disabled' : '') + '><span class="ic">' + I.xfer + '</span><span class="tx"><b>' + esc(n) + '</b><span>' + esc(d) + '</span></span><span class="go">Transfer</span></button>').join('') + '</div>';
+    if (st.notesOpen) h += '<label class="eb" for="__dcallnote">CALL NOTES</label><textarea id="__dcallnote" placeholder="Type notes as you talk. They carry into wrap-up.">' + esc(st.callNote || '') + '</textarea>';
+    h += '<button type="button" class="endbtn" data-a="end">' + I.end + 'End call</button>';
+    return h;
+  }
+  function viewWrap() {
+    const w = st.wrap;
+    let h = '<div class="card"><span class="eb c">WRAP-UP · ' + esc(w.reason || 'CALL ENDED') + '</span><span class="big">' + esc(w.label) + '</span><span class="priv">' + I.lock + 'Number hidden · GDPR</span><span class="sub">Talk time ' + fmt(w.dur) + ' · from ' + esc(LINES[st.line]) + '</span></div>';
+    h += '<span class="eb">HOW DID IT GO?</span><div class="chips" role="group" aria-label="Call outcome">' + DISP.map((d) => '<button type="button" data-a="disp" data-v="' + d + '" aria-pressed="' + (w.disp === d) + '">' + d + '</button>').join('') + '</div>';
+    h += '<label class="eb" for="__dnote">NOTES</label><textarea id="__dnote" placeholder="What should the next person know?">' + esc(w.note || st.callNote || '') + '</textarea>';
+    h += '<button type="button" class="primary" data-a="save"' + (w.disp ? '' : ' disabled') + '>' + (w.disp ? 'Save & set Available' : 'Pick an outcome to save') + '</button>';
+    h += '<button type="button" class="ghost" data-a="savepause">Save & take a break</button>';
+    return h;
+  }
+  function viewPaused() {
+    const s = STATUSES.find((x) => x[0] === st.status);
+    const coach = st.status === 'coach';
+    let h = '<div class="card ' + (coach ? 'coach' : 'pause') + '"><span class="eb ' + (coach ? 'p' : 'a') + '">' + (st.status === 'off' ? 'OFFLINE' : 'PAUSED · NO CALLS ROUTED TO YOU') + '</span><span class="big">' + esc(s[1]) + '</span><span class="sub">' + esc(s[2]) + '</span><span class="clock" data-since>' + fmt(Date.now() - st.since) + '</span></div>';
+    if (coach) h += '<div class="tip"><i>TODAY</i><span>Let the client finish before you answer, then summarise the next step.</span></div><button type="button" class="ghost" data-a="feedback">' + (st.fb ? '✓ Feedback request sent' : 'Ask for written feedback') + '</button>';
+    h += '<button type="button" class="primary" data-a="back">I’m back · set Available</button>';
+    return h;
+  }
+  function render() {
+    if (!panel) return;
+    const focusId = document.activeElement && panel.contains(document.activeElement) ? document.activeElement.id : null;
+    const body = st.call ? viewCall() : st.wrap ? viewWrap() : paused() ? viewPaused() : viewIdle();
+    panel.innerHTML = '<div class="hd"><span class="av">MA</span><span class="who"><b>Maged Alnajar</b><span>EXT. 1002 · RAN SALES</span></span><button type="button" class="x" data-a="close" aria-label="Close the dialer">' + I.x + '</button></div>' + statusBlock() + '<div class="bd">' + body + '</div><div class="ft"><div><span>Calls today</span><b>' + st.todayCalls + '</b></div><div><span>Talk time</span><b>02:50:27</b></div><div><span>Break time</span><b>26:03</b></div></div>';
+    const cn = panel.querySelector('#__dcallnote'); if (cn) cn.addEventListener('input', (e) => { st.callNote = e.target.value; });
+    if (focusId) { const f = panel.querySelector('#' + focusId); if (f) { f.focus({ preventScroll: true }); if (f.setSelectionRange && f.value) f.setSelectionRange(f.value.length, f.value.length); } }
+    updateTab();
+  }
+  function onClick(e) {
+    e.__dial = true;
+    const b = e.target.closest('[data-a]'); if (!b || b.disabled) return;
+    const a = b.dataset.a, v = b.dataset.v, c = st.call;
+    if (a === 'close') return toggle(false);
+    if (a === 'demo') return demo();
+    if (a === 'golive') return goLive();
+    if (a === 'menu') { st.menu = !st.menu; return render(); }
+    if (a === 'status') return setStatus(v);
+    if (a === 'tab') { st.tab = v; return render(); }
+    if (a === 'key') { st.num += v; st.err = ''; render(); const n = panel.querySelector('#__dnum'); if (n) n.focus({ preventScroll: true }); return; }
+    if (a === 'del') { st.num = st.num.slice(0, -1); return render(); }
+    if (a === 'call') return dial(st.num);
+    if (a === 'dialnum') return dial(v, b.dataset.l);
+    if (a === 'end') return hangup(c && c.phase === 'ring' ? 'CANCELLED' : '');
+    if (a === 'mute' && c) { c.mute = !c.mute; return render(); }
+    if (a === 'hold' && c) { c.hold = !c.hold; return render(); }
+    if (a === 'rec' && c) { c.rec = !c.rec; return render(); }
+    if (a === 'conf' && c) { c.conf = !c.conf; return render(); }
+    if (a === 'dtmf') { st.dtmf = !st.dtmf; st.xfer = false; return render(); }
+    if (a === 'tone') { st.tones = (st.tones || '') + v; return render(); }
+    if (a === 'xfer') { st.xfer = !st.xfer; st.dtmf = false; return render(); }
+    if (a === 'doxfer') return hangup('TRANSFERRED TO ' + v.toUpperCase());
+    if (a === 'notes') { st.notesOpen = !st.notesOpen; return render(); }
+    if (a === 'help' && c) { if (c.help) { c.help = 0; return render(); } c.help = 1; render(); setTimeout(() => { if (st.call === c && c.help === 1) { c.help = 2; render(); } }, 2500); return; }
+    if (a === 'disp' && st.wrap) { st.wrap.disp = v; return render(); }
+    if (a === 'save') { st.callNote = ''; st.tones = ''; return saveWrap(); }
+    if (a === 'savepause') { st.callNote = ''; st.tones = ''; st.wrap = null; return setStatus('break'); }
+    if (a === 'back') { st.fb = false; return setStatus('avail'); }
+    if (a === 'feedback') { st.fb = true; return render(); }
+  }
+  function mount() {
+    if (!document.querySelector('nav.dock, [data-dialer-toggle]')) return;
+    restore(); shell(); render();
+    document.addEventListener('click', (e) => { const t = e.target.closest && e.target.closest('[data-dialer-demo]'); if (t) { e.preventDefault(); e.__dial = true; demo(); } });
+    document.addEventListener('click', (e) => { const t = e.target.closest && e.target.closest('[data-dialer-call]'); if (!t) return; e.preventDefault(); e.__dial = true; if (st.call) { goLive(); return; } st.wrap = null; if (paused() || st.status === 'wrap') { st.status = 'avail'; st.since = Date.now(); } if (!st.open) toggle(true); setTimeout(() => dial(t.getAttribute('data-dialer-call'), t.getAttribute('data-label'), true), 300); });
+    document.addEventListener('click', (e) => { const t = e.target.closest && e.target.closest('[data-dialer-toggle]'); if (t) { e.preventDefault(); toggle(undefined, t); } });
+    window.addEventListener('message', (e) => { const d = e.data; if (d && d.deckDialer) { toggle(true); if (d.deckDialer === 'call') setTimeout(() => dial('6610023841', REF('6610023841')), 400); if (d.deckDialer === 'demo') demo(); if (d.deckDialer === 'break') { if (st.call) { st.call = null; st.dtmf = false; st.xfer = false; } st.wrap = null; setStatus('lunch'); } } });
+  }
+  return { mount, toggle, dial, demo, hangup: () => { hangup(); if (!st.open) toggle(true); } };
+})();
+
+window.__DIAL = __DIAL;
+
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { f: 'all', q: '' }; }
+  renderVals() {
+    const ALL = [
+      ['18:52', 'Franklin T.', '4418820193', '6:41', 64, '', 'Closed'],
+      ['18:31', 'Lucia C.', '3307715520', '12:08', 71, '', 'Follow-up'],
+      ['18:14', 'Test I.', '9902114476', '3:02', 0, 'Dead silence 97%', 'Dropped'],
+      ['17:58', 'Gladys R.', '5521907733', '9:47', 48, 'High stress', 'Follow-up'],
+      ['17:40', 'Clara V.', '6610023841', '7:15', 58, 'Talk ratio 86%', 'Closed'],
+      ['17:22', 'Candela D.', '2208841107', '5:33', 52, '', 'No answer'],
+      ['17:05', 'Eloi L.', '7741056620', '11:20', 69, '', 'Closed'],
+      ['16:48', 'Tom A.', '8832207715', '8:02', 66, '', 'Follow-up']
+    ];
+    const s = this.state;
+    const q = s.q.trim().toLowerCase();
+    const list = ALL.filter((r) => (s.f === 'all' || (s.f === 'flagged' ? !!r[5] : r[6] === 'Closed')) && (!q || r[1].toLowerCase().includes(q)));
+    const OUT = { Closed: '#C8FF5A', 'Follow-up': '#5EE6F0', Dropped: '#FF7A6B', 'No answer': '#9AA2B3' };
+    const rows = list.map((r) => ({
+      t: r[0], agent: r[1], ini: r[1].split(' ').map((w) => w[0]).join('').replace('.', ''), client: r[2], len: r[3], score: r[4],
+      aria: r[1] + ', ended ' + r[0] + ', ' + r[6] + '. Open review',
+      barStyle: 'display: block; width: ' + Math.max(r[4], 2) + '%; height: 100%; border-radius: 99px; background: ' + (r[4] >= 60 ? '#C8FF5A' : r[4] >= 40 ? '#FFC24B' : '#FF7A6B'),
+      flag: r[5] || '—',
+      flagStyle: "font-size: 13px; color: " + (r[5] ? '#FF7A6B' : '#7F889B'),
+      out: r[6],
+      outStyle: "justify-self: start; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.08em; padding: 5px 10px; border-radius: 99px; border: 1px solid " + OUT[r[6]] + '; color: ' + OUT[r[6]]
+    }));
+    const pill = (on) => 'height: 38px; padding: 0 16px; border: 0; border-radius: 99px; font-size: 13px; ' + (on ? 'background: #F2F4F8; color: #050608;' : 'background: transparent; color: #9AA2B3;');
+    const filters = [['all', 'All calls'], ['flagged', 'Flagged'], ['closed', 'Closed']].map(([k, l]) => ({ label: l, pressed: k === s.f ? 'true' : 'false', style: pill(k === s.f), pick: () => this.setState({ f: k }) }));
+    return { rows, filters, count: rows.length, flagged: rows.filter((r) => r.flag !== '—').length, empty: rows.length === 0, onSearch: (e) => this.setState({ q: e.target.value }) };
+  }
+}
+__mount(Component);
+</script>
+</body>
+</html>
