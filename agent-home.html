@@ -31,6 +31,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #C8FF5A;outline-offset:3p
 <a href="agent-home.html" aria-label="NARA Calling Hub home" style="width: 42px; height: 42px; border-radius: 14px; background: #C8FF5A; color: #0B0F02; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex: 0 0 auto; position: relative"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"></path></svg><span class="tip" aria-hidden="true">NARA Calling Hub · super AI</span></a>
 <a href="agent-home.html" aria-current="page" aria-label="My day" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center; background: rgba(200,255,90,0.12); color: #C8FF5A"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg><span class="tip" aria-hidden="true">My day</span></a>
 <a href="agent-focus.html" aria-label="Live call" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><rect x="3" y="15" width="4" height="6" rx="1.5"></rect><rect x="17" y="15" width="4" height="6" rx="1.5"></rect></svg><span class="tip" aria-hidden="true">Live call</span></a>
+<a href="agent-calls.html" aria-label="My calls" style="width: 42px; height: 42px; flex: 0 0 auto; border-radius: 13px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h4l2 4-2 1.5a10 10 0 0 0 4.5 4.5L14 13l4 2v3a2 2 0 0 1-2 2A14 14 0 0 1 2 7a2 2 0 0 1 2-2"></path><path d="M15 3h6M15 7h6M18 10h3"></path></svg><span class="tip" aria-hidden="true">My calls</span></a>
 <a href="#theme" role="button" data-theme-toggle aria-label="Switch between light and dark version" style="margin-top: auto; width: 42px; height: 42px; flex: 0 0 auto; border-radius: 14px; display: flex; align-items: center; justify-content: center"><svg class="th-sun" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="th-moon" aria-hidden="true" style="display: none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg><span class="tip" aria-hidden="true">Light / dark version</span></a>
 <a href="login.html" data-signout aria-label="Maged Alnajar, agent. Sign out" style="width: 38px; height: 38px; flex: 0 0 auto; border-radius: 99px; background: #1A1D24; border: 1px solid rgba(255,255,255,0.1); color: #F2F4F8; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; position: relative">MA<span class="tip" aria-hidden="true">Maged · Sign out</span></a>
 </nav>
@@ -93,8 +94,8 @@ button:focus-visible,a:focus-visible{outline:2px solid #C8FF5A;outline-offset:3p
 </section>
 
 <section aria-labelledby="rec-h" style="border-radius: 26px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 22px; display: flex; flex-direction: column; gap: 4px">
-<h2 id="rec-h" style="margin: 0 0 8px; font-size: 18px; font-weight: 400">Recent calls</h2>
-<sc-for list="{{ recent }}" as="r" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px"><span style="{{ r.dot }}"></span><span style="margin-right: auto">{{ r.ref }}</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9AA2B3">{{ r.what }}</span></div></sc-for>
+<div style="display: flex; align-items: baseline; margin: 0 0 8px"><h2 id="rec-h" style="margin: 0; font-size: 18px; font-weight: 400; margin-right: auto">Recent calls</h2><a href="agent-calls.html" style="font-size: 13px; color: #C8FF5A">All my calls →</a></div>
+<sc-for list="{{ recent }}" as="r" hint-placeholder-count="4"><a href="{{ r.href }}" aria-label="{{ r.aria }}" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #F2F4F8"><span style="{{ r.dot }}"></span><span style="margin-right: auto">{{ r.ref }}</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9AA2B3">{{ r.what }}</span><span aria-hidden="true" style="color: #6B7385">›</span></a></sc-for>
 </section>
 </aside>
 </div>
@@ -323,7 +324,7 @@ window.addEventListener('storage', (e) => { if (e.key === 'mycc-theme') __setThe
 /* Roles: admin sees everything, team lead everything except billing, agent only the agent screens. */
 const __ROLE = (() => {
   const OPEN = { 'index.html': 1, 'login.html': 1 };
-  const AGENT = { 'agent-home.html': 1, 'agent-focus.html': 1 };
+  const AGENT = { 'agent-home.html': 1, 'agent-focus.html': 1, 'agent-calls.html': 1 };
   const LEAD_BLOCK = { 'billing.html': 1 };
   const role = () => { try { return localStorage.getItem('nara-role') || 'admin'; } catch (e) { return 'admin'; } };
   const page = (h) => (String(h || '').split('#')[0].split('?')[0].split('/').pop() || 'index.html');
@@ -521,7 +522,7 @@ const __DIAL = (() => {
     st.wrap = { num: c.num, label: c.label, dur: c.phase === 'live' ? Date.now() - c.start : 0, disp: c.phase === 'live' ? '' : 'No answer', note: '', reason: reason || '' };
     st.status = 'wrap'; st.since = Date.now(); st.todayCalls += 1; render();
   }
-  function saveWrap() { st.wrap = null; setStatus('avail'); }
+  function saveWrap() { const w = st.wrap; if (w) { try { const L = JSON.parse(localStorage.getItem('nara-history') || '[]'); const n = new Date(); L.push({ label: w.label, num: w.num, dur: w.dur, disp: w.disp, note: w.note, at: Date.now(), time: String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0') }); localStorage.setItem('nara-history', JSON.stringify(L.slice(-10))); } catch (e) {} window.dispatchEvent(new CustomEvent('nara-history')); } st.wrap = null; setStatus('avail'); }
   function shell() {
     const s = document.createElement('style'); s.id = '__dialcss'; s.textContent = CSS; document.head.appendChild(s);
     tab = document.createElement('button'); tab.id = '__dial-tab'; tab.type = 'button';
@@ -701,7 +702,7 @@ class Component extends DCLogic {
       mark: 'position: absolute; top: -4px; bottom: -4px; width: 2px; background: #F2F4F8; left: ' + Math.min(100, team / max * 100).toFixed(1) + '%',
       note: 'Team average ' + teamTxt + (good ? ' · you’re ahead' : ' · room to grow') });
     const compare = [cmp('Answer rate', 25, 32, '25%', '32%', 60, false), cmp('Talk time', 10227, 8183, '2h 50m', '2h 16m', 12000, true)];
-    const recent = [['out', REF('6610023841'), 'Outbound · 4:12'], ['in', REF('1526202626'), 'Inbound · 24:51'], ['miss', REF('3307715520'), 'Missed · 18:31'], ['out', REF('7741056620'), 'Outbound · 11:20']].map(([k, ref, what]) => ({ ref, what, dot: 'width: 8px; height: 8px; flex: 0 0 auto; border-radius: 99px; background: ' + (k === 'miss' ? '#FF7A6B' : k === 'in' ? '#5EE6F0' : '#C8FF5A') }));
+    const recent = [['out', REF('6610023841'), 'Outbound · 4:12'], ['in', REF('1526202626'), 'Inbound · 24:51'], ['miss', REF('3307715520'), 'Missed · 18:31'], ['out', REF('7741056620'), 'Outbound · 11:20']].map(([k, ref, what]) => ({ ref, what, href: 'agent-calls.html?call=c' + ref.slice(-4).replace(/^0+/, ''), aria: 'Open call brief, ' + ref + ', ' + what, dot: 'width: 8px; height: 8px; flex: 0 0 auto; border-radius: 99px; background: ' + (k === 'miss' ? '#FF7A6B' : k === 'in' ? '#5EE6F0' : '#C8FF5A') }));
     const c = s.call; const secs = c ? Math.max(0, Math.floor((s.now - c.start) / 1000)) : 0;
     return {
       greeting: h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening',

@@ -308,7 +308,7 @@ window.addEventListener('storage', (e) => { if (e.key === 'mycc-theme') __setThe
 /* Roles: admin sees everything, team lead everything except billing, agent only the agent screens. */
 const __ROLE = (() => {
   const OPEN = { 'index.html': 1, 'login.html': 1 };
-  const AGENT = { 'agent-home.html': 1, 'agent-focus.html': 1 };
+  const AGENT = { 'agent-home.html': 1, 'agent-focus.html': 1, 'agent-calls.html': 1 };
   const LEAD_BLOCK = { 'billing.html': 1 };
   const role = () => { try { return localStorage.getItem('nara-role') || 'admin'; } catch (e) { return 'admin'; } };
   const page = (h) => (String(h || '').split('#')[0].split('?')[0].split('/').pop() || 'index.html');
@@ -506,7 +506,7 @@ const __DIAL = (() => {
     st.wrap = { num: c.num, label: c.label, dur: c.phase === 'live' ? Date.now() - c.start : 0, disp: c.phase === 'live' ? '' : 'No answer', note: '', reason: reason || '' };
     st.status = 'wrap'; st.since = Date.now(); st.todayCalls += 1; render();
   }
-  function saveWrap() { st.wrap = null; setStatus('avail'); }
+  function saveWrap() { const w = st.wrap; if (w) { try { const L = JSON.parse(localStorage.getItem('nara-history') || '[]'); const n = new Date(); L.push({ label: w.label, num: w.num, dur: w.dur, disp: w.disp, note: w.note, at: Date.now(), time: String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0') }); localStorage.setItem('nara-history', JSON.stringify(L.slice(-10))); } catch (e) {} window.dispatchEvent(new CustomEvent('nara-history')); } st.wrap = null; setStatus('avail'); }
   function shell() {
     const s = document.createElement('style'); s.id = '__dialcss'; s.textContent = CSS; document.head.appendChild(s);
     tab = document.createElement('button'); tab.id = '__dial-tab'; tab.type = 'button';

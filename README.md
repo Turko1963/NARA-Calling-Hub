@@ -18,7 +18,7 @@ Landing page → **Login** → choose a role → **Access platform**
 
 - **Admin**: every screen, every team.
 - **Team lead**: every screen except Billing. Monitoring shows only their team.
-- **Agent**: only *My day* and the live call screen, plus the dialer. Any other screen sends them back to *My day*.
+- **Agent**: only *My day*, the live call screen and *My calls*, plus the dialer. Any other screen sends them back to *My day*.
 
 ## Screens
 
@@ -34,12 +34,14 @@ Landing page → **Login** → choose a role → **Access platform**
 | `billing.html` | Billing | Admin |
 | `agent-home.html` | *My day*: the agent's home | Agent |
 | `agent-focus.html` | The agent's live call screen | Agent |
+| `agent-calls.html` | *My calls*: every call of the day with the super AI brief, the tips given live, what was said, the recording and the next step | Agent |
 | `login.html` | Sign-in with role choice | Everyone |
 
 ## Things to try
 
 - **▶ Agent call demo** (Dashboard top bar, or *Start calling* on *My day*): the dialer calls a client and connects, and the agent lands on their live call screen.
 - **DIALER** tab on the right edge: keypad, statuses (break, lunch, restroom, coaching, meeting, training…), mute, hold, transfer, ask coach, wrap-up.
+- **My calls** (agent menu, or *All my calls* on *My day*): pick a call to see its brief, tips and transcript. Calls you finish in the dialer show up at the top.
 - **☀ / ☾** button: switches between the dark and the light (NARA colours) version.
 
 ## Notes
